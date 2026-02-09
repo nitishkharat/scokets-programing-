@@ -9,7 +9,7 @@ const r1=readline.createInterface({
     output:process.stdout
 });
 // Connect to server
-client.connect(5999, "192.168.1.66", () => {
+client.connect(5999, "192.168.1.90", () => {
     console.log("Connected to server");
     r1.question("type msg:",(msg) =>{
         client.write(msg+"\n");
