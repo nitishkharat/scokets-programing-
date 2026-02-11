@@ -109,31 +109,31 @@
 
 
 
-// function sum(...numbers){
-//     console.log(numbers);
+function sum(...numbers){
+    console.log(numbers);
 
 
 // }
 // sum(1,2,3);
 
 
-// addition of numbers 
 
-// function sum (...numbers){
-//     let total =0;
-//     for (let n of numbers){
-//         total +=n;
 
-//     }console.log(total);
-// }
-// sum(50,60,70,80);
+function sum (...numbers){
+    let total =0;
+    for (let n of numbers){
+        total +=n;
+
+    }console.log(total);
+}
+sum(50,60,70,80);
 
 
 // spread values 
-// let nums=[1,2,3];
-// let newnum =[...nums, 4,5];
+let nums=[1,2,3];
+let newnum =[...nums, 4,5];
 
-// console.log(newnum);
+console.log(newnum);
 
 
 // function overriden 
@@ -160,4 +160,4 @@ let v1= new Car();
 let v2= new Bike ();
 
 v1.start();
-v2.start();
+v2.start()}
