@@ -109,8 +109,8 @@
 
 
 
-function sum(...numbers){
-    console.log(numbers);
+// function sum(...numbers){
+//     console.log(numbers);
 
 
 // }
@@ -119,45 +119,66 @@ function sum(...numbers){
 
 
 
-function sum (...numbers){
-    let total =0;
-    for (let n of numbers){
-        total +=n;
+// function sum (...numbers){
+//     let total =0;
+//     for (let n of numbers){
+//         total +=n;
 
-    }console.log(total);
-}
-sum(50,60,70,80);
+//     }console.log(total);
+// }
+// sum(50,60,70,80);
 
 
 // spread values 
-let nums=[1,2,3];
-let newnum =[...nums, 4,5];
+// let nums=[1,2,3];
+// let newnum =[...nums, 4,5];
 
-console.log(newnum);
+// console.log(newnum);
 
 
 // function overriden 
 
-class vehical{
-    start(){
-        console.log("vehical start");
+// class vehical{
+//     start(){
+//         console.log("vehical start");
+
+//     }
+// }
+// class Car extends vehical{
+//     start(){
+//         console.log("car start with key ");
+
+//     }
+// }
+// class Bike extends vehical{
+//     start(){
+//         console.log("bike start ");
+//     }
+// }
+
+// let v1= new Car();
+// let v2= new Bike ();
+
+// v1.start();
+// v2.start();
+
+
+
+function getdata(){
+    return new Promise((resolve,reject)=>{
+        let succes=false;
+        setTimeout(() => {
+         if(success){
+            resolve("data recieved");
+         }   
+         else{
+            reject("Error while fectching dat");
+
+         }
+        },2000);
+    });
 
     }
-}
-class Car extends vehical{
-    start(){
-        console.log("car start with key ");
-
-    }
-}
-class Bike extends vehical{
-    start(){
-        console.log("bike start ");
-    }
-}
-
-let v1= new Car();
-let v2= new Bike ();
-
-v1.start();
-v2.start()}
+    getdata ()
+    .then((result)=> console.log(result))
+    .catch((error) => console.log(error));
