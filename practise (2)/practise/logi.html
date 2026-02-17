@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  
+</head>
+<body>
+  <div class="login-box">
+    <h1>Log in</h1>
+    <form onsubmit="handleLogin(event)">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="••••••••" required>
+      <button type="submit">Log in</button>
+    </form>
+  </div>
+  <script>
+    const API = 'http://localhost:3000/api';
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      fetch(API + '/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.token) {
+            localStorage.setItem('token', data.token);
+            alert('Logged in! Token saved. Try opening the console and call getMe().');
+          } else {
+            alert(data.error || 'Login failed');
+          }
+        })
+        .catch(() => alert('Server not running? Start with: node server.js'));
+    }
+
+    // Example: call protected route with JWT
+    function getMe() {
+      const token = localStorage.getItem('token');
+      if (!token) return console.log('Not logged in');
+      fetch(API + '/me', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      })
+        .then(res => res.json())
+        .then(console.log)
+        .catch(console.error);
+    }
+  </script>
+</body>
+</html>
