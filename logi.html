@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+</head>
+<body>
+
+    <h2>Login here</h2>
+
+    <form action="http://localhost:3000/login" method="POST">
+        <input type="email" name="email" placeholder=" Email" required><br><br>
+        <input type="password" name="password" placeholder=" Password" required><br><br>
+        <button type="submit">Login</button>
+    </form>
+  <script>
+    app.post("/login", (req, res) => {
+    const { email, password } = req.body;
+
+    const sql = "SELECT * FROM customers.login  WHERE email = ? AND password = ?";
+
+    db.query(sql, [email, password], (err, result) => {
+
+        if (result.length > 0) {
+
+            // Save successful login
+            const insertSql = "INSERT INTO login_attempts (email, login_time, status) VALUES (?, NOW(), 'SUCCESS')";
+            
+            db.query(insertSql, [email]);
+
+            res.send("Login Successful ✅");
+
+        } else {
+
+            // Save failed login
+            const insertSql = "INSERT INTO login_attempts (email, login_time, status) VALUES (?, NOW(), 'FAILED')";
+            
+            db.query(insertSql, [email]);
+
+            res.send("Invalid Email or Password ❌");
+        }
+    });
+});
+
+</script>
+</body>
+</html>

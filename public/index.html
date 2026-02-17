@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Data</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <h2>Load Students Data</h2>
+
+    <button id="loadBtn">Get Students</button>
+
+    <div id="result"></div>
+
+    <script>
+        $(document).ready(function(){
+
+            $("#loadBtn").click(function(){
+
+                $.ajax({
+                    url: "http://localhost:3000/students",
+                    type: "GET",
+                    success: function(data){
+
+                        let output = "";
+
+                        for(let i = 0; i < data.length; i++){
+                            output += "<p>Name: " + data[i].name +
+                                      " | contact: " + data[i].contact + "</p>";
+                        }
+
+                        $("#result").html(output);
+                    },
+                    error: function(error){
+                        console.log(error);
+                        alert("Error loading data");
+                    }
+                });
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>
